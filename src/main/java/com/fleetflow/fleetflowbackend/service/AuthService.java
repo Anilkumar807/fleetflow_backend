@@ -1,5 +1,6 @@
 package com.fleetflow.fleetflowbackend.service;
-
+import com.fleetflow.fleetflowbackend.entity.Driver;
+import com.fleetflow.fleetflowbackend.repository.DriverRepository;
 import com.fleetflow.fleetflowbackend.entity.User;
 import com.fleetflow.fleetflowbackend.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +16,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final DriverRepository driverRepository;
     private static final Set<String> ALLOWED_ROLES = Set.of(
             "DRIVER",
             "OPERATIONS",
@@ -25,8 +26,10 @@ public class AuthService {
 
     public AuthService(
             UserRepository userRepository,
+            DriverRepository driverRepository,
             PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.driverRepository = driverRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
